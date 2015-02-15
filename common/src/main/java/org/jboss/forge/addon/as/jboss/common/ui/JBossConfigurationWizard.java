@@ -178,26 +178,27 @@ public abstract class JBossConfigurationWizard extends AbstractProjectCommand im
       Project project = getSelectedProject(context);
       config.setFaceted(project);
 
-      DependencyFacet dependencyFacet = project.getFacet(DependencyFacet.class);
-      List<Coordinate> dists = dependencyFacet.resolveAvailableVersions(getJBossDistribution());
+      List<Coordinate> dists = getAvalableDists(project);
 
-      version.setValueChoices(dists);
-      version.setItemLabelConverter(new Converter<Coordinate, String>()
-      {
-         @Override
-         public String convert(Coordinate coordinate)
+      if(dists != null && dists.size()>0) {
+         version.setValueChoices(dists);
+         version.setItemLabelConverter(new Converter<Coordinate, String>()
          {
-            return coordinate.getVersion();
+            @Override
+            public String convert(Coordinate coordinate)
+            {
+               return coordinate.getVersion();
+            }
+         });
+   
+         String defaultVersion = config.getVersion();
+         for (Coordinate coordinate : dists)
+         {
+            if (coordinate.getVersion().equals(defaultVersion))
+               version.setDefaultValue(coordinate);
          }
-      });
-
-      String defaultVersion = config.getVersion();
-      for (Coordinate coordinate : dists)
-      {
-         if (coordinate.getVersion().equals(defaultVersion))
-            version.setDefaultValue(coordinate);
+         builder.add(version);
       }
-      
       
       String path = config.getPath();
       if (path == null)
@@ -232,9 +233,16 @@ public abstract class JBossConfigurationWizard extends AbstractProjectCommand im
          propertiesFile
                   .setValue(resourceFactory.create(FileResource.class, new File(config.getServerPropertiesFile())));
       }
-
-      builder.add(version).add(distributionFile).add(this.installDir).add(port).add(timeout).add(javaHome).add(jvmargs).add(configFile)
+      
+      builder.add(distributionFile).add(this.installDir).add(port).add(timeout).add(javaHome).add(jvmargs).add(configFile)
                .add(propertiesFile);
+   }
+
+   protected List<Coordinate> getAvalableDists(Project project)
+   {
+      DependencyFacet dependencyFacet = project.getFacet(DependencyFacet.class);
+      List<Coordinate> dists = dependencyFacet.resolveAvailableVersions(getJBossDistribution());
+      return dists;
    }
 
    @Override

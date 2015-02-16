@@ -20,6 +20,7 @@ import org.jboss.forge.addon.as.jboss.common.util.Messages;
 import org.jboss.forge.addon.as.spi.ApplicationServerProvider;
 import org.jboss.forge.addon.configuration.facets.ConfigurationFacet;
 import org.jboss.forge.addon.convert.Converter;
+import org.jboss.forge.addon.dependencies.Coordinate;
 import org.jboss.forge.addon.dependencies.Dependency;
 import org.jboss.forge.addon.dependencies.DependencyResolver;
 import org.jboss.forge.addon.dependencies.builder.DependencyQueryBuilder;
@@ -119,11 +120,17 @@ public abstract class JBossProvider<CONFIG extends JBossConfiguration> extends A
 
          String distFile = config.getDistributionFile();
          if(Strings.isNullOrEmpty(distFile)) {
-            Dependency dist = resolver.resolveArtifact(DependencyQueryBuilder.create(config.getDistibution()));
-            distFile = dist.getArtifact().getFullyQualifiedName();
+            Coordinate coordinate = config.getDistibution();
+            if(coordinate!=null) {
+               Dependency dist = resolver.resolveArtifact(DependencyQueryBuilder.create(coordinate));
+               distFile = dist.getArtifact().getFullyQualifiedName();
+            }
          }
-         Files.extractAppServer(distFile, target);
-         return directoryResourceConverter.convert(target);
+         
+         if(!Strings.isNullOrEmpty(distFile)) {
+            Files.extractAppServer(distFile, target);
+            return directoryResourceConverter.convert(target);
+         }
       }
       catch (IOException e)
       {

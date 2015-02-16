@@ -10,6 +10,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.inject.Inject;
 
+import static org.junit.Assert.*;
+
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.forge.addon.as.ui.ASSetupWizard;
@@ -26,7 +28,6 @@ import org.jboss.forge.arquillian.Dependencies;
 import org.jboss.forge.arquillian.archive.ForgeArchive;
 import org.jboss.forge.furnace.repositories.AddonDependencyEntry;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -75,17 +76,21 @@ public class ASSetupWizardTest
    {
       final Project project = projectFactory.createTempProject();
       try (WizardCommandController tester = testHarness.createWizardController(ASSetupWizard.class,
-               project.getRootDirectory()))
+               project.getRoot()))
       {
          // Launch
          tester.initialize();
 
-         Assert.assertTrue(tester.isValid());
+         // We need an application server.
+         assertFalse(tester.isValid());
+         
+         // Set JBoss AS7 as the application server type.
          tester.setValueFor("server", "jbossas7");
-
-         Assert.assertTrue(tester.canMoveToNextStep());
+         assertTrue(tester.isValid());
+         
+         assertTrue(tester.canMoveToNextStep());
          tester.next().initialize();
-         Assert.assertFalse(tester.canMoveToNextStep());
+         assertFalse(tester.canMoveToNextStep());
 
          final AtomicBoolean flag = new AtomicBoolean();
          tester.getContext().addCommandExecutionListener(new AbstractCommandExecutionListener()
@@ -101,8 +106,9 @@ public class ASSetupWizardTest
             }
          });
          tester.execute();
+         
          // Ensure that the application server is installed
-         Assert.assertEquals(true, flag.get());
+         assertEquals(true, flag.get());
       }
    }
 }

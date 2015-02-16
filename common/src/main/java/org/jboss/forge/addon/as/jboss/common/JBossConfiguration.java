@@ -12,6 +12,7 @@ import org.jboss.forge.addon.dependencies.Coordinate;
 import org.jboss.forge.addon.dependencies.builder.CoordinateBuilder;
 import org.jboss.forge.addon.facets.AbstractFacet;
 import org.jboss.forge.addon.projects.Project;
+import org.jboss.forge.furnace.util.Strings;
 
 /**
  * The Common JBoss Configuration
@@ -145,7 +146,10 @@ public abstract class JBossConfiguration extends AbstractFacet<Project>
 
    public Coordinate getDistibution()
    {
-      return CoordinateBuilder.create(config.getString(asConfigPrefix + CONFIG_DISTRIBUTION_KEY));
+      String dist = config.getString(asConfigPrefix + CONFIG_DISTRIBUTION_KEY);
+      if(Strings.isNullOrEmpty(dist))
+         return null;
+      return CoordinateBuilder.create(dist);
    }
 
    public void setDistribution(Coordinate dist)

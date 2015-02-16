@@ -9,6 +9,7 @@
   <modules>
     <module>common</module>
     <module>as7</module>
+    <module>eap6</module>
     <module>wf8</module>
     <module>tests</module>
   </modules>

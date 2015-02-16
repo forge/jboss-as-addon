@@ -51,7 +51,7 @@ public class JBossEAP6Provider extends JBossProvider<JBossEAP6Configuration> imp
    @Override
    public String getName()
    {
-      return "jbosseap6";
+      return "eap6";
    }
 
    @Override

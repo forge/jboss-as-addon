@@ -49,13 +49,5 @@ public class JBossEAP6ConfigurationWizard extends JBossConfigurationWizard
    {
       return jbossEAP6Dist;
    }
-
-//   protected List<Coordinate> getAvalableDists(Project project)
-//   {
-//      List<Coordinate> dists = super.getAvalableDists(project);
-//      if(dists.isEmpty()) {
-//         
-//      }
-//      return dists;
-//   }
+   
 }

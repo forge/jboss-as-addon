@@ -31,7 +31,7 @@ public class WildFly8ConfigurationWizard extends JBossConfigurationWizard
    private DependencyBuilder wildfly8Dist = DependencyBuilder.create()
             .setGroupId("org.wildfly")
             .setArtifactId("wildfly-dist")
-            .setVersion("[8.0.0,9.0.0[")
+            .setVersion("[8.0.0,9.0.0.Alpha1)")
             .setPackaging("zip");
 
    @Override

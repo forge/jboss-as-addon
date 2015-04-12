@@ -11,20 +11,18 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import javax.inject.Inject;
-import javax.security.auth.callback.CallbackHandler;
 
 import org.jboss.as.controller.client.ModelControllerClient;
+import org.jboss.forge.addon.as.jboss.as7.server.StandaloneDeployment;
+import org.jboss.forge.addon.as.jboss.as7.ui.JBossAS7ConfigurationWizard;
 import org.jboss.forge.addon.as.jboss.common.JBossProvider;
 import org.jboss.forge.addon.as.jboss.common.deployment.Deployment;
 import org.jboss.forge.addon.as.jboss.common.deployment.Deployment.Type;
 import org.jboss.forge.addon.as.jboss.common.deployment.DeploymentFailureException;
 import org.jboss.forge.addon.as.jboss.common.server.ConnectionInfo;
-import org.jboss.forge.addon.as.jboss.common.server.SecurityActions;
 import org.jboss.forge.addon.as.jboss.common.server.Server;
 import org.jboss.forge.addon.as.jboss.common.ui.JBossConfigurationWizard;
 import org.jboss.forge.addon.as.jboss.common.util.Messages;
-import org.jboss.forge.addon.as.jboss.as7.server.StandaloneDeployment;
-import org.jboss.forge.addon.as.jboss.as7.ui.JBossAS7ConfigurationWizard;
 import org.jboss.forge.addon.projects.Project;
 import org.jboss.forge.addon.projects.facets.PackagingFacet;
 import org.jboss.forge.addon.ui.context.UIContext;
@@ -129,9 +127,6 @@ public class JBossAS7Provider extends JBossProvider<JBossAS7Configuration> imple
       // Close any previously connected clients
       serverController.closeClient();
       serverController.setServer(server);
-
-      // Add the shutdown hook
-      SecurityActions.registerShutdown(server);
 
       return server;
    }

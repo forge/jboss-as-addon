@@ -18,7 +18,6 @@ import org.jboss.forge.addon.as.jboss.common.deployment.Deployment;
 import org.jboss.forge.addon.as.jboss.common.deployment.Deployment.Type;
 import org.jboss.forge.addon.as.jboss.common.deployment.DeploymentFailureException;
 import org.jboss.forge.addon.as.jboss.common.server.ConnectionInfo;
-import org.jboss.forge.addon.as.jboss.common.server.SecurityActions;
 import org.jboss.forge.addon.as.jboss.common.server.Server;
 import org.jboss.forge.addon.as.jboss.common.ui.JBossConfigurationWizard;
 import org.jboss.forge.addon.as.jboss.common.util.Messages;
@@ -130,9 +129,6 @@ public class WildFly8Provider extends JBossProvider<WildFly8Configuration> imple
       // Close any previously connected clients
       serverController.closeClient();
       serverController.setServer(server);
-
-      // Add the shutdown hook
-      SecurityActions.registerShutdown(server);
 
       return server;
    }

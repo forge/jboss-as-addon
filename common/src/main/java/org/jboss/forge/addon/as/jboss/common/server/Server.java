@@ -69,7 +69,6 @@ public abstract class Server<MODELCONTROLLERCLIENT>
     */
    public final synchronized void start() throws IOException
    {
-      SecurityActions.registerShutdown(this);
       final List<String> cmd = createLaunchCommand();
       final ProcessBuilder processBuilder = new ProcessBuilder(cmd);
       processBuilder.redirectErrorStream(true);
@@ -114,7 +113,7 @@ public abstract class Server<MODELCONTROLLERCLIENT>
    /**
     * Stops the server.
     */
-   public final synchronized Result stop()
+   public final Result stop()
    {
       try
       {

@@ -9,6 +9,8 @@ package org.jboss.forge.addon.as.jboss.common.server;
 import java.io.Closeable;
 import java.io.File;
 import java.io.OutputStream;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 
 import javax.annotation.PreDestroy;
 
@@ -160,7 +162,7 @@ public abstract class ServerController<MODELCONTROLLERCLIENT extends Closeable>
       String jreHome = javaHome;
       if (jreHome == null)
       {
-         jreHome = SecurityActions.getEnvironmentVariable("JAVA_HOME");
+         jreHome = getEnvironmentVariable("JAVA_HOME");
       }
 
       final ServerInfo serverInfo = ServerInfo.of(connectionInfo, jreHome , jbossHome,
@@ -176,4 +178,15 @@ public abstract class ServerController<MODELCONTROLLERCLIENT extends Closeable>
 
    protected abstract Server<MODELCONTROLLERCLIENT> createServer(ServerInfo serverInfo);
 
+   private String getEnvironmentVariable(final String key) {
+       if (System.getSecurityManager() == null) {
+           return System.getenv(key);
+       }
+       return AccessController.doPrivileged(new PrivilegedAction<String>() {
+           @Override
+           public String run() {
+               return System.getenv(key);
+           }
+       });
+   }
 }

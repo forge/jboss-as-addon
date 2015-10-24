@@ -49,13 +49,13 @@ public class WildFly8Provider extends JBossProvider<WildFly8Configuration> imple
    @Override
    public String getName()
    {
-      return "wildfly8";
+      return "wildfly";
    }
 
    @Override
    public String getDescription()
    {
-      return "WildFly 8";
+      return "WildFly";
    }
 
    @Override

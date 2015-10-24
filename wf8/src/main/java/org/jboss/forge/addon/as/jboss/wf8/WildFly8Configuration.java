@@ -15,12 +15,12 @@ import org.jboss.forge.addon.as.jboss.common.JBossConfiguration;
  */
 public class WildFly8Configuration extends JBossConfiguration
 {
-   private static final String ASNAME = "wf8";
+   private static final String ASNAME = "wf";
 
    /**
     * The default version
     */
-   private static final String DEFAULT_VERSION = "8.2.1.Final";
+   private static final String DEFAULT_VERSION = "9.0.1.Final";
 
    /**
     * The default path

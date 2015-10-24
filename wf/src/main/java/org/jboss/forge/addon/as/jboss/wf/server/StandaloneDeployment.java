@@ -4,7 +4,7 @@
  * Licensed under the Eclipse Public License version 1.0, available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.jboss.forge.addon.as.jboss.wf8.server;
+package org.jboss.forge.addon.as.jboss.wf.server;
 
 import java.io.File;
 import java.io.IOException;

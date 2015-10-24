@@ -4,7 +4,7 @@
  * Licensed under the Eclipse Public License version 1.0, available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.jboss.forge.addon.as.jboss.wf8;
+package org.jboss.forge.addon.as.jboss.wf;
 
 import java.io.File;
 import java.net.InetAddress;
@@ -21,8 +21,8 @@ import org.jboss.forge.addon.as.jboss.common.server.ConnectionInfo;
 import org.jboss.forge.addon.as.jboss.common.server.Server;
 import org.jboss.forge.addon.as.jboss.common.ui.JBossConfigurationWizard;
 import org.jboss.forge.addon.as.jboss.common.util.Messages;
-import org.jboss.forge.addon.as.jboss.wf8.server.StandaloneDeployment;
-import org.jboss.forge.addon.as.jboss.wf8.ui.WildFly8ConfigurationWizard;
+import org.jboss.forge.addon.as.jboss.wf.server.StandaloneDeployment;
+import org.jboss.forge.addon.as.jboss.wf.ui.WildFlyConfigurationWizard;
 import org.jboss.forge.addon.projects.Project;
 import org.jboss.forge.addon.projects.facets.PackagingFacet;
 import org.jboss.forge.addon.ui.context.UIContext;
@@ -35,14 +35,14 @@ import org.jboss.forge.addon.ui.result.Results;
  * 
  * @author Jeremie Lagarde
  */
-public class WildFly8Provider extends JBossProvider<WildFly8Configuration> implements ConnectionInfo
+public class WildFlyProvider extends JBossProvider<WildFlyConfiguration> implements ConnectionInfo
 {
 
    @Inject
-   private WildFly8ServerController serverController;
+   private WildFlyServerController serverController;
 
    @Inject
-   private WildFly8Configuration configuration;
+   private WildFlyConfiguration configuration;
 
    private final Messages messages = Messages.INSTANCE;
 
@@ -61,11 +61,11 @@ public class WildFly8Provider extends JBossProvider<WildFly8Configuration> imple
    @Override
    protected Class<? extends JBossConfigurationWizard> getConfigurationWizardClass()
    {
-      return WildFly8ConfigurationWizard.class;
+      return WildFlyConfigurationWizard.class;
    }
 
    @Override
-   protected WildFly8Configuration getConfig()
+   protected WildFlyConfiguration getConfig()
    {
       return configuration;
    }

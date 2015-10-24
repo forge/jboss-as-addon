@@ -4,7 +4,7 @@
  * Licensed under the Eclipse Public License version 1.0, available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.jboss.forge.addon.as.jboss.wf8;
+package org.jboss.forge.addon.as.jboss.wf;
 
 import org.jboss.forge.addon.as.jboss.common.JBossConfiguration;
 
@@ -13,7 +13,7 @@ import org.jboss.forge.addon.as.jboss.common.JBossConfiguration;
  * 
  * @author Jeremie Lagarde
  */
-public class WildFly8Configuration extends JBossConfiguration
+public class WildFlyConfiguration extends JBossConfiguration
 {
    private static final String ASNAME = "wf";
 

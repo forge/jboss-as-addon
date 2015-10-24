@@ -149,7 +149,7 @@ public abstract class JBossConfiguration extends AbstractFacet<Project>
       String dist = config.getString(asConfigPrefix + CONFIG_DISTRIBUTION_KEY);
       if(Strings.isNullOrEmpty(dist))
          return null;
-      return CoordinateBuilder.create(dist);
+      return createCoordinate(dist);
    }
 
    public void setDistribution(Coordinate dist)
@@ -219,6 +219,57 @@ public abstract class JBossConfiguration extends AbstractFacet<Project>
    public void setServerPropertiesFile(String serverPropertiesFile)
    {
       config.addProperty(asConfigPrefix + CONFIG_PROPERTIESFILE_KEY, serverPropertiesFile);
+   }
+
+
+   /**
+    * 
+    * Creates a Coordinate
+    * 
+    * @param coordinates The artifact coordinates in the format
+    *           {@code <groupId>:<artifactId>[:<packaging>[:<classifier>]]:<version>} , must not be {@code null} or
+    *           empty.
+    * 
+    * @return
+    */
+   private static CoordinateBuilder createCoordinate(String coordinates)
+   {
+      CoordinateBuilder builder = CoordinateBuilder.create();
+      // groupId:artifactId:packaging:classifier:version
+      String[] split = coordinates.split("\\:");
+      switch (split.length)
+      {
+      case 1:
+         builder.setGroupId(split[0]);
+         break;
+      case 2:
+         builder.setGroupId(split[0]);
+         builder.setArtifactId(split[1]);
+         break;
+      case 3:
+         builder.setGroupId(split[0]);
+         builder.setArtifactId(split[1]);
+         builder.setVersion(split[2]);
+         break;
+      case 4:
+         builder.setGroupId(split[0]);
+         builder.setArtifactId(split[1]);
+         builder.setPackaging(split[2]);
+         builder.setVersion(split[3]);
+         break;
+      case 5:
+         builder.setGroupId(split[0]);
+         builder.setArtifactId(split[1]);
+         builder.setPackaging(split[2]);
+         builder.setClassifier(split[3]);
+         builder.setVersion(split[4]);
+         break;
+      default:
+         throw new IllegalArgumentException(
+                  "Malformed coordinate (" + coordinates
+                           + "). Should be groupId:artifactId:[packaging]:[classifier]:[version]");
+      }
+      return builder;
    }
 
 }

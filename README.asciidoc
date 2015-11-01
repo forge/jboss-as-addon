@@ -28,9 +28,9 @@ In the Forge console just type the following commands :
 [source]
 ----
 addon-install-from-git --url https://github.com/forge/as-addon  --coordinate org.jboss.forge.addon:as
-addon-install-from-git --url https://github.com/forge/jboss-as-addon  --coordinate rg.jboss.forge.addon:jboss-as-eap6
-addon-install-from-git --url https://github.com/forge/jboss-as-addon  --coordinate rg.jboss.forge.addon:jboss-as-as7
-addon-install-from-git --url https://github.com/forge/jboss-as-addon  --coordinate rg.jboss.forge.addon:jboss-as-wf
+addon-install-from-git --url https://github.com/forge/jboss-as-addon  --coordinate org.jboss.forge.addon:jboss-as-eap6
+addon-install-from-git --url https://github.com/forge/jboss-as-addon  --coordinate org.jboss.forge.addon:jboss-as-as7
+addon-install-from-git --url https://github.com/forge/jboss-as-addon  --coordinate org.jboss.forge.addon:jboss-as-wf
 ----
 
 

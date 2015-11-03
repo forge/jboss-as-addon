@@ -1,4 +1,6 @@
-== jboss-as
+== JBoss Application Server (including EAP and Wildfly) addon
+image:https://travis-ci.org/forge/jboss-as-addon.svg?branch=master["Build Status", link="https://travis-ci.org/forge/jboss-as-addon"]
+
 :idprefix: id_ 
 The jboss-as addon simplify the interaction with application serveur like JBoss AS7, JBoss EAP6 or Wildlfy
 This addon provides *standalone* functionality, and *exports services* for use in other addons. 

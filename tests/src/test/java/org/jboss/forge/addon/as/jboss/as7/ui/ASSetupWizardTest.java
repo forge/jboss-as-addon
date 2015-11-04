@@ -45,7 +45,7 @@ public class ASSetupWizardTest
             @AddonDependency(name = "org.jboss.forge.addon:ui-test-harness"),
             @AddonDependency(name = "org.jboss.forge.addon:as"),
             @AddonDependency(name = "org.jboss.forge.addon:jboss-as-as7"),
-            @AddonDependency(name = "org.jboss.forge.addon:jboss-as-wf8"),
+            @AddonDependency(name = "org.jboss.forge.addon:jboss-as-wf"),
             @AddonDependency(name = "org.jboss.forge.addon:maven")
    })
    public static ForgeArchive getDeployment()
@@ -58,7 +58,7 @@ public class ASSetupWizardTest
                         AddonDependencyEntry.create("org.jboss.forge.addon:configuration"),
                         AddonDependencyEntry.create("org.jboss.forge.addon:as"),
                         AddonDependencyEntry.create("org.jboss.forge.addon:jboss-as-as7"),
-                        AddonDependencyEntry.create("org.jboss.forge.addon:jboss-as-wf8"),
+                        AddonDependencyEntry.create("org.jboss.forge.addon:jboss-as-wf"),
                         AddonDependencyEntry.create("org.jboss.forge.addon:maven"),
                         AddonDependencyEntry.create("org.jboss.forge.addon:ui"),
                         AddonDependencyEntry.create("org.jboss.forge.addon:ui-test-harness")

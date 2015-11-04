@@ -25,7 +25,7 @@ public class JBossAS7Configuration extends JBossConfiguration
    /**
     * The default path
     */
-   private static final String DEFAULT_PATH = "target/jboss-as-dist";
+   private static final String DEFAULT_PATH = ".jbossas7";
 
    /**
     * The default port

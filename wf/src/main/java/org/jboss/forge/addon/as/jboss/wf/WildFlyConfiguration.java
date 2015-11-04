@@ -20,12 +20,12 @@ public class WildFlyConfiguration extends JBossConfiguration
    /**
     * The default version
     */
-   private static final String DEFAULT_VERSION = "9.0.1.Final";
+   private static final String DEFAULT_VERSION = "9.0.2.Final";
 
    /**
     * The default path
     */
-   private static final String DEFAULT_PATH = "target/wildfly-dist";
+   private static final String DEFAULT_PATH = ".wildfly";
 
    /**
     * The default port

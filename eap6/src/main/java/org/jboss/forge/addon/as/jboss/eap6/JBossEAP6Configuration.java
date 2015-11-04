@@ -25,7 +25,7 @@ public class JBossEAP6Configuration extends JBossConfiguration
    /**
     * The default path
     */
-   private static final String DEFAULT_PATH = "target/jboss-eap6-dist";
+   private static final String DEFAULT_PATH = ".eap6";
 
    /**
     * The default port
